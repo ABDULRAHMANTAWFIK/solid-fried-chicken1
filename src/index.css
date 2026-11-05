@@ -1,0 +1,191 @@
+@import "tailwindcss";
+
+/* ─────────────── THMANYAH FONT FAMILY ─────────────── */
+@font-face {
+  font-family: 'Thmanyah Serif Display';
+  src: url('/fonts/thmanyahserifdisplay-Black.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Thmanyah Sans';
+  src: url('/fonts/thmanyahsans-Black.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Thmanyah Serif Text';
+  src: url('/fonts/thmanyahseriftext-Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Thmanyah Serif Text';
+  src: url('/fonts/thmanyahseriftext-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Thmanyah Serif Text';
+  src: url('/fonts/thmanyahseriftext-Medium.otf') format('opentype');
+  font-weight: 500 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-headline: 'Thmanyah Serif Display', system-ui, sans-serif;
+  --font-arabic: 'Thmanyah Serif Text', system-ui, sans-serif;
+  --font-body: 'Thmanyah Serif Text', system-ui, sans-serif;
+  --font-sans: 'Thmanyah Serif Text', system-ui, sans-serif;
+  --font-condensed: 'Thmanyah Sans', 'Thmanyah Serif Display', system-ui, sans-serif;
+}
+
+@layer base {
+  :root {
+    --font-headline: 'Thmanyah Serif Display', system-ui, sans-serif;
+    --font-arabic: 'Thmanyah Serif Text', system-ui, sans-serif;
+    --font-condensed: 'Thmanyah Sans', system-ui, sans-serif;
+    --font-body: 'Thmanyah Serif Text', system-ui, sans-serif;
+    --solid-red: #E60012;
+    --solid-orange: #FF6B00;
+    --solid-black: #070709;
+    --solid-dark: #08080a;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Thmanyah Serif Text', var(--font-arabic), system-ui, sans-serif;
+    background-color: var(--solid-black);
+    color: #ffffff;
+    overflow-x: hidden;
+    direction: rtl;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Thmanyah Serif Display', var(--font-headline), system-ui, sans-serif;
+    font-weight: 900;
+  }
+
+  /* Custom Sleek Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #08080a;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #e60012;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #ff2a3a;
+  }
+}
+
+/* ─────────────── TYPOGRAPHY UTILITIES ─────────────── */
+.font-headline {
+  font-family: 'Thmanyah Serif Display', var(--font-headline), system-ui, sans-serif;
+  font-weight: 900;
+}
+
+.font-condensed {
+  font-family: 'Thmanyah Sans', var(--font-condensed), system-ui, sans-serif;
+  font-weight: 900;
+}
+
+.font-arabic {
+  font-family: 'Thmanyah Serif Text', var(--font-arabic), system-ui, sans-serif;
+}
+
+.font-display-black {
+  font-family: 'Thmanyah Serif Display', sans-serif;
+  font-weight: 900;
+}
+
+.font-sans-black {
+  font-family: 'Thmanyah Sans', sans-serif;
+  font-weight: 900;
+}
+
+/* ─────────────── GLOW EFFECTS ─────────────── */
+.red-glow {
+  /* Removed heavy text-shadow which caused blurry smears on text-transparent text */
+}
+
+.red-box-glow {
+  box-shadow: 0 10px 40px -10px rgba(230, 0, 18, 0.55);
+}
+
+.red-box-glow-lg {
+  box-shadow: 0 0 60px rgba(230, 0, 18, 0.35);
+}
+
+/* ─────────────── CLIP MASK REVEAL (ARABIC FRIENDLY) ─────────────── */
+.line-reveal-wrapper {
+  overflow: hidden;
+  display: block;
+  padding-top: 0.12em;
+  padding-bottom: 0.12em;
+  margin-top: -0.12em;
+  margin-bottom: -0.12em;
+}
+
+/* ─────────────── FILM GRAIN ─────────────── */
+.bg-grain {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 0);
+  background-size: 20px 20px;
+}
+
+/* ─────────────── SCROLLBAR HIDE ─────────────── */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ─────────────── BUTTON INTERACTIONS ─────────────── */
+.btn-solid-red {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #E60012 0%, #d10010 100%);
+  color: white;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-solid-red:hover {
+  box-shadow: 0 10px 35px rgba(230, 0, 18, 0.7);
+  transform: translateY(-2px);
+}
+.btn-solid-red:active {
+  transform: scale(0.97);
+}
+
+/* ─────────────── GPU PERFORMANCE ─────────────── */
+/* Only promote layers during active GSAP animation (done via inline will-change) */
+/* Static blur orbs — contain paint to avoid affecting the rest of layout */
+.blur-orb {
+  contain: strict;
+  isolation: isolate;
+}
+
+/* Ensure pinned ScrollTrigger sections don't cause horizontal overflow */
+.pin-spacer {
+  overflow: hidden !important;
+}
+
+/* ─────────────── REDUCED MOTION ─────────────── */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
